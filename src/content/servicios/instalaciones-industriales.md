@@ -1,5 +1,5 @@
 ---
-title: "Instalaciones Eléctricas Industriales"
+title: "Instalaciones Eléctricas Industriales en Moquegua"
 description: "Potencia y resistencia para talleres y plantas: sistemas trifásicos, tableros de fuerza y canalizaciones pesadas."
 price: "Cotizar"
 image: ../../assets/electricidad-industrial.png

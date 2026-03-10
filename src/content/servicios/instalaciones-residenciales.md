@@ -1,5 +1,5 @@
 ---
-title: "Instalaciones Eléctricas Residenciales"
+title: "Instalaciones Eléctricas Residenciales en Moquegua"
 description: "Seguridad y modernidad para tu hogar: desde iluminación LED decorativa hasta tableros con protección diferencial."
 price: "Cotizar"
 image: ../../assets/instalacion-hogar.png

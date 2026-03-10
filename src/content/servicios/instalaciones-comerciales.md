@@ -1,5 +1,5 @@
 ---
-title: "Electricidad Comercial y MYPE"
+title: "Electricidad Comercial y MYPE en Moquegua"
 description: "Adecuación eléctrica para negocios: iluminación de alto impacto, tableros normativos y certificados INDECI."
 price: "Cotizar"
 image: ../../assets/electricidad-comercio.png

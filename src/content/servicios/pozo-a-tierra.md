@@ -1,5 +1,5 @@
 ---
-title: "Mantenimiento y Protocolo de Pozo a Tierra"
+title: "Mantenimiento y Protocolo de Pozo a Tierra en Moquegua"
 description: "Evita multas de INDECI. Servicio completo con gel, tratamiento químico y certificado firmado por Ingeniero."
 price: "Cotizar"
 image: ../../assets/pozo-tierra.jpeg

@@ -1,5 +1,5 @@
 ---
-title: "Detección de Fugas de Corriente"
+title: "Detección de Fugas de Corriente en Moquegua"
 description: "¿Tu recibo de luz llega muy caro? Podrías tener una fuga invisible que te está costando dinero."
 price: "Cotizar"
 image: ../../assets/fuga-de-corriente.png

@@ -1,5 +1,5 @@
 ---
-title: "Sistemas de Videovigilancia (CCTV)"
+title: "Sistemas de Videovigilancia (CCTV) en Moquegua"
 description: "Protección 24/7 con cámaras IP, sistemas solares y monitoreo remoto desde tu celular."
 price: "Cotizar"
 image: ../../assets/camaras-seguridad-h9c.png

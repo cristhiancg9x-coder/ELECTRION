@@ -1,5 +1,5 @@
 ---
-title: "Iluminación de Emergencia y Señalética"
+title: "Iluminación de Emergencia y Señalética en Moquegua"
 description: "Equipamiento preventivo para negocios y edificios. Instalación de luces de emergencia bajo norma técnica."
 price: "Cotizar"
 image: ../../assets/luces-emergencia.jpg

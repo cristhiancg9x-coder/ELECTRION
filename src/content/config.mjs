@@ -11,6 +11,15 @@ const servicios = defineCollection({
   }),
 });
 
+const lugares = defineCollection({
+  type: 'content',
+  schema: z.object({
+    name: z.string().describe("Nombre de la ubicación"),
+    description: z.string().describe("Descripción corta de la locación"),
+  }),
+});
+
 export const collections = {
   servicios,
+  lugares,
 };
