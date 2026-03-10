@@ -1,0 +1,73 @@
+---
+/**
+ * @component Beneficios.astro
+ * @description Sección que resalta las ventajas competitivas de la empresa (Atención rápida, Certificados INDECI, etc.).
+ * Refactorizado a Tailwind CSS para Electrion.
+ */
+---
+
+<section class="py-16 text-center bg-electrion-dark border-y border-white/10">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-bold mb-12 text-white drop-shadow-md">
+      ¿Por qué elegir a ELECTRION?
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div
+        class="p-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_25px_rgba(0,0,0,0.2)] hover:border-electrion-accent hover:bg-white/10 group"
+      >
+        <span
+          class="text-5xl block mb-4 drop-shadow-md group-hover:scale-110 transition-transform"
+          >⚡</span
+        >
+        <h3 class="text-white text-xl font-bold mb-3">Atención Rápida</h3>
+        <p class="text-gray-300 leading-relaxed text-sm">
+          En Moquegua, Ilo y alrededores. Llegamos antes de que se descongele tu
+          refri.
+        </p>
+      </div>
+
+      <div
+        class="p-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_25px_rgba(0,0,0,0.2)] hover:border-electrion-accent hover:bg-white/10 group"
+      >
+        <span
+          class="text-5xl block mb-4 drop-shadow-md group-hover:scale-110 transition-transform"
+          >📜</span
+        >
+        <h3 class="text-white text-xl font-bold mb-3">Certificados INDECI</h3>
+        <p class="text-gray-300 leading-relaxed text-sm">
+          Firmados por ingenieros colegiados. Garantizamos que pasas la
+          inspección sin problemas.
+        </p>
+      </div>
+
+      <div
+        class="p-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_25px_rgba(0,0,0,0.2)] hover:border-electrion-accent hover:bg-white/10 group"
+      >
+        <span
+          class="text-5xl block mb-4 drop-shadow-md group-hover:scale-110 transition-transform"
+          >💳</span
+        >
+        <h3 class="text-white text-xl font-bold mb-3">Pago Fácil</h3>
+        <p class="text-gray-300 leading-relaxed text-sm">
+          Aceptamos efectivo, Yape, Plin y transferencias. Emitimos Factura
+          estructurada o Boleta.
+        </p>
+      </div>
+
+      <div
+        class="p-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_25px_rgba(0,0,0,0.2)] hover:border-electrion-accent hover:bg-white/10 group"
+      >
+        <span
+          class="text-5xl block mb-4 drop-shadow-md group-hover:scale-110 transition-transform"
+          >🛡️</span
+        >
+        <h3 class="text-white text-xl font-bold mb-3">Garantía Real</h3>
+        <p class="text-gray-300 leading-relaxed text-sm">
+          No desaparecemos. Si algo falla, volvemos y lo arreglamos sin costo
+          adicional para ti.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,275 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QJE1WHSHSN"
+    ></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-QJE1WHSHSN");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="electricista moquegua, instalaciones eléctricas, mantenimiento eléctrico, automatización PLC, electricidad industrial, electricista urgente, servicios eléctricos"
+    />
+
+    <!-- Google Verification -->
+    <meta
+      name="google-site-verification"
+      content="w3ssfq4RyBc5a5N856gWO4jVprcvQ3S4b9bdPdgEU1s"
+    />
+
+    <!-- Open Graph para Redes Sociales -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta
+      property="og:image"
+      content="https://electrion.netlify.app/logo.svg"
+    />
+    <meta property="og:url" content="https://electrion.netlify.app" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_PE" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta
+      name="twitter:image"
+      content="https://electrion.netlify.app/logo.svg"
+    />
+
+    <!-- Slot para inyectar Schema.org SEO -->
+    <slot name="schema" />
+
+    <!-- Favicon y Móviles -->
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="apple-touch-icon" href="/logo.svg" />
+
+    <!-- Preload -->
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap"
+      as="style"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body class="font-sans bg-gray-50">
+    <!-- Header y Navegación -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+      <nav class="container mx-auto px-4 py-3">
+        <div class="flex justify-between items-center">
+          <!-- Logo -->
+          <div class="flex items-center">
+            <a href="/" class="flex items-center">
+              <img
+                src="/logo.svg"
+                alt="ELECTRION - Electricistas expertos en Moquegua"
+                class="h-12"
+                width="48"
+                height="48"
+                loading="lazy"
+              />
+              <span class="ml-3 text-xl font-bold text-electrion-dark"
+                >ELECTRION</span
+              >
+            </a>
+          </div>
+
+          <!-- Menú Desktop -->
+          <div class="hidden md:flex space-x-8">
+            <a
+              href="/#inicio"
+              class="text-electrion-dark hover:text-electrion-blue font-medium"
+              >Inicio</a
+            >
+            <a
+              href="/#nosotros"
+              class="text-electrion-dark hover:text-electrion-blue font-medium"
+              >Nosotros</a
+            >
+            <a
+              href="/#servicios"
+              class="text-electrion-dark hover:text-electrion-blue font-medium"
+              >Servicios</a
+            >
+            <a
+              href="/#portfolio"
+              class="text-electrion-dark hover:text-electrion-blue font-medium"
+              >Portafolio</a
+            >
+            <a
+              href="/#contacto"
+              class="text-electrion-dark hover:text-electrion-blue font-medium"
+              >Contacto</a
+            >
+          </div>
+
+          <!-- Botón WhatsApp Desktop -->
+          <div class="hidden md:block">
+            <a
+              href="https://wa.me/51951413458"
+              target="_blank"
+              class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300"
+            >
+              <i class="fab fa-whatsapp mr-2"></i>WhatsApp
+            </a>
+          </div>
+
+          <!-- Menú Mobile -->
+          <div class="md:hidden">
+            <button id="menuBtn" class="text-electrion-dark text-2xl">
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Menú Mobile Desplegable -->
+        <div
+          id="mobileMenu"
+          class="hidden md:hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-100"
+        >
+          <div class="flex flex-col space-y-4 p-5">
+            <a
+              href="/#inicio"
+              class="text-electrion-dark hover:text-electrion-blue font-medium"
+              >Inicio</a
+            >
+            <a
+              href="/#nosotros"
+              class="text-electrion-dark hover:text-electrion-blue font-medium"
+              >Nosotros</a
+            >
+            <a
+              href="/#servicios"
+              class="text-electrion-dark hover:text-electrion-blue font-medium"
+              >Servicios</a
+            >
+            <a
+              href="/#portfolio"
+              class="text-electrion-dark hover:text-electrion-blue font-medium"
+              >Portafolio</a
+            >
+            <a
+              href="/#contacto"
+              class="text-electrion-dark hover:text-electrion-blue font-medium"
+              >Contacto</a
+            >
+            <a
+              href="https://wa.me/51951413458"
+              target="_blank"
+              class="bg-green-500 text-white px-4 py-3 text-center rounded-lg font-bold shadow-md hover:bg-green-600 transition"
+            >
+              <i class="fab fa-whatsapp mr-2"></i>Contactar por WhatsApp
+            </a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-electrion-dark text-white py-8">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-4 md:mb-0">
+            <div class="flex items-center">
+              <img
+                src="/logo.svg"
+                alt="ELECTRION Soluciones Eléctricas Moquegua"
+                class="h-10"
+                width="40"
+                height="40"
+                loading="lazy"
+              />
+              <span class="ml-3 text-xl font-bold">ELECTRION</span>
+            </div>
+            <p class="text-gray-400 mt-2">
+              Soluciones Eléctricas Profesionales
+            </p>
+          </div>
+
+          <div class="text-center md:text-right">
+            <p class="text-gray-400">
+              &copy; 2024 ELECTRION Soluciones Eléctricas. Todos los derechos
+              reservados.
+            </p>
+            <p class="text-gray-400">Moquegua, Perú</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Botón Flotante WhatsApp -->
+    <a
+      href="https://wa.me/51951413458"
+      target="_blank"
+      class="fixed bottom-6 right-6 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition duration-300 z-40"
+    >
+      <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <!-- JavaScript -->
+    <script is:inline src="/js/main.js"></script>
+
+    <!-- Scroll Reveal Animation Logic -->
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", () => {
+        const observerOptions = {
+          root: null,
+          rootMargin: "0px",
+          threshold: 0.15,
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("opacity-100", "translate-y-0");
+              entry.target.classList.remove("opacity-0", "translate-y-8");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        document.querySelectorAll(".reveal-on-scroll").forEach((el) => {
+          observer.observe(el);
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,77 @@
+---
+// src/components/Testimonios.astro
+const testimonios = [
+  {
+    nombre: "Carlos Medina",
+    zona: "Moquegua",
+    texto:
+      "Excelente servicio. Llegaron en 20 minutos por una emergencia de corto circuito a media noche. Muy educados y profesionales.",
+    estrellas: 5,
+    inicial: "C",
+  },
+  {
+    nombre: "Ana Lucia Ruiz",
+    zona: "Samegua",
+    texto:
+      "Me instalaron todo el sistema eléctrico para mi nuevo departamento. Sus tableros están muy bien ordenados y etiquetados. Los recomiendo.",
+    estrellas: 5,
+    inicial: "A",
+  },
+  {
+    nombre: "Ing. Jorge Tapia",
+    zona: "Ilo",
+    texto:
+      "Realizaron el pozo a tierra para nuestra empresa y nos entregaron el certificado INDECI sin demoras. Buen trabajo técnico.",
+    estrellas: 5,
+    inicial: "J",
+  },
+];
+---
+
+<section class="py-24 bg-white relative">
+  <div
+    class="container mx-auto px-4 max-w-7xl reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700"
+  >
+    <div class="text-center mb-16">
+      <span
+        class="text-electrion-accent font-semibold tracking-wider uppercase text-sm mb-2 block text-electrion-blue"
+        >Casos de Éxito</span
+      >
+      <h2 class="text-3xl md:text-4xl font-bold text-electrion-dark mb-4">
+        Lo que dicen nuestros clientes
+      </h2>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        La satisfacción y seguridad de más de 500 clientes en Moquegua nos
+        respalda.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {
+        testimonios.map((testimonio) => (
+          <div class="bg-gray-50 border border-gray-100 rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow">
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-12 h-12 bg-electrion-blue/10 text-electrion-dark rounded-full flex items-center justify-center font-bold text-xl">
+                {testimonio.inicial}
+              </div>
+              <div>
+                <h4 class="font-bold text-electrion-dark">{testimonio.nombre}</h4>
+                <p class="text-sm text-gray-500">{testimonio.zona}</p>
+              </div>
+            </div>
+
+            <div class="flex text-electrion-accent mb-4 text-sm">
+              <i class="fas fa-star" />
+              <i class="fas fa-star" />
+              <i class="fas fa-star" />
+              <i class="fas fa-star" />
+              <i class="fas fa-star" />
+            </div>
+
+            <p class="text-gray-700 italic">"{testimonio.texto}"</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,119 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const serviciosEntries = await getCollection("servicios");
+  return serviciosEntries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout
+  title={`${entry.data.title} | ELECTRION`}
+  description={entry.data.description}
+>
+  <!-- Hero del Servicio -->
+  <section class="bg-electrion-blue text-white py-16">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">{entry.data.title}</h1>
+      <p class="text-xl max-w-3xl mx-auto text-white/80">
+        {entry.data.description}
+      </p>
+    </div>
+  </section>
+
+  <!-- Contenido Principal -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <div class="flex flex-col md:flex-row gap-12 items-start">
+        <article class="flex-1 prose prose-lg prose-blue max-w-none">
+          {
+            entry.data.image && (
+              <div class="mb-8 rounded-xl overflow-hidden shadow-lg border border-gray-100">
+                <Image
+                  src={entry.data.image}
+                  alt={entry.data.title}
+                  class={`w-full h-auto object-${entry.data.imageFit || "cover"} aspect-video`}
+                />
+              </div>
+            )
+          }
+
+          <div
+            class="bg-gray-50 border-l-4 border-electrion-accent p-6 mb-8 rounded-r-lg"
+          >
+            <p class="text-xl font-medium text-electrion-dark m-0">
+              <strong>Precio referencial:</strong>
+              <span class="text-electrion-dark"
+                >{entry.data.price || "A cotizar"}</span
+              >
+            </p>
+          </div>
+
+          <div class="content-text text-gray-700 space-y-4">
+            <Content />
+          </div>
+        </article>
+
+        <!-- Sidebar Call to Action -->
+        <aside class="w-full md:w-80 shrink-0 sticky top-24">
+          <div
+            class="bg-gradient-to-b from-electrion-blue to-electrion-dark rounded-xl shadow-xl overflow-hidden"
+          >
+            <div class="p-6 text-center text-white">
+              <i class="fas fa-bolt text-5xl text-electrion-accent mb-4"></i>
+              <h3 class="text-2xl font-bold mb-2">¿Necesitas este servicio?</h3>
+              <p class="text-white/80 mb-6">
+                Estamos en Moquegua y atendemos emergencias las 24 horas.
+              </p>
+
+              <a
+                href={`https://wa.me/51951413458?text=Hola%20ELECTRION,%20me%20interesa%20el%20servicio%20de%20${encodeURIComponent(entry.data.title)}`}
+                target="_blank"
+                class="block w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300 mb-4"
+              >
+                <i class="fab fa-whatsapp mr-2"></i> Mensaje por WhatsApp
+              </a>
+
+              <a
+                href="/#contacto"
+                class="block w-full bg-white hover:bg-gray-100 text-electrion-dark font-bold py-3 px-4 rounded-lg transition duration-300"
+              >
+                <i class="fas fa-envelope mr-2"></i> Solicitar Cotización
+              </a>
+            </div>
+            <div class="bg-electrion-dark p-4 text-sm text-center text-blue-200">
+              Atención inmediata y trabajos 100% garantizados.
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to action final -->
+  <section class="bg-electrion-accent py-12">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-2xl md:text-3xl font-bold text-electrion-dark mb-4">
+        ¡No arriesgues la seguridad de tu instalación eléctrica!
+      </h2>
+      <p class="text-lg text-electrion-dark mb-8 max-w-2xl mx-auto">
+        Confía en profesionales certificados con años de experiencia en el
+        mercado.
+      </p>
+      <a
+        href="/servicios"
+        class="inline-flex items-center text-electrion-dark font-bold hover:underline"
+      >
+        <i class="fas fa-arrow-left mr-2"></i> Volver a todos los servicios
+      </a>
+    </div>
+  </section>
+</Layout>

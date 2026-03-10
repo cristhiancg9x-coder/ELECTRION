@@ -1,0 +1,714 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Beneficios from "../components/Beneficios.astro";
+import Galeria from "../components/Galeria.astro";
+import Preguntas from "../components/Preguntas.astro";
+import TrustBanner from "../components/TrustBanner.astro";
+import Testimonios from "../components/Testimonios.astro";
+
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+const servicios = await getCollection("servicios");
+
+// Lista de servicios genéricos (sin imágenes ricas/páginas dedicadas)
+const serviciosGenericos = [
+  {
+    titulo: "Automatización y Control",
+    icono: "fas fa-robot",
+    descripcion:
+      "Sistemas de control automático, variadores de frecuencia y tableros personalizados con PLC LOGO.",
+    features: [
+      "Automatización con PLC LOGO",
+      "Variadores de frecuencia",
+      "Sistemas de control automáticos",
+      "Tableros a medida",
+    ],
+  },
+  {
+    titulo: "Mantenimiento Especializado",
+    icono: "fas fa-tools",
+    descripcion:
+      "Diagnóstico preciso y reparación de fallas eléctricas corporativas e industriales.",
+    features: [
+      "Mantenimiento de herramientas",
+      "Reparación de fallas",
+      "Mantenimiento predictivo",
+    ],
+  },
+  {
+    titulo: "Asesoría Técnica",
+    icono: "fas fa-headset",
+    descripcion:
+      "Consultoría eléctrica, diseño de proyectos y soporte técnico permanente a tu disposición.",
+    features: [
+      "Consultoría especializada",
+      "Diseño de proyectos",
+      "Soluciones personalizadas",
+      "Soporte 24/7",
+    ],
+  },
+];
+---
+
+<Layout
+  title="ELECTRION - Electricistas en Moquegua | Instalaciones Eléctricas y Automatización"
+  description="🔌 Electricistas expertos en Moquegua. Instalaciones eléctricas residenciales e industriales, automatización PLC, mantenimiento urgente 24/7. ¡Cotiza hoy!"
+>
+  <!-- Schema.org Local Business - CRÍTICO para SEO Local -->
+  <script slot="schema" type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "Electrician",
+      "name": "ELECTRION Soluciones Eléctricas",
+      "description": "Servicios eléctricos profesionales en Moquegua - Instalaciones residenciales, sistemas industriales y automatización",
+      "url": "https://electrion.netlify.app",
+      "telephone": "+51-951-413-458",
+      "email": "electriontc@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Moquegua",
+        "addressRegion": "Moquegua",
+        "postalCode": "18001",
+        "addressCountry": "PE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -17.1953,
+        "longitude": -70.9357
+      },
+      "areaServed": "Moquegua y todo el Sur del Perú",
+      "serviceType": [
+        "Instalación eléctrica residencial",
+        "Electricidad industrial",
+        "Automatización con PLC",
+        "Mantenimiento eléctrico",
+        "Sistemas de puesta a tierra"
+      ],
+      "openingHours": "Mo-Sa 08:00-18:00",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "opens": "08:00",
+          "closes": "18:00"
+        }
+      ],
+      "sameAs": ["https://wa.me/51951413458"]
+    }
+  </script>
+
+  <!-- Sección Hero/Inicio V2 (Modernizada) -->
+  <section
+    id="inicio"
+    class="relative overflow-hidden bg-electrion-dark text-white min-h-[90vh] md:min-h-screen flex flex-col justify-center pt-24 pb-20 md:pt-16 md:pb-32"
+  >
+    <!-- Animated SVG Circuit Background (Option 2) -->
+    <div class="absolute inset-0 z-0 opacity-15 pointer-events-none">
+      <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern
+            id="circuit-pattern"
+            x="0"
+            y="0"
+            width="200"
+            height="200"
+            patternUnits="userSpaceOnUse"
+          >
+            <!-- Geometrical circuit paths -->
+            <path
+              class="animated-circuit"
+              d="M20,100 L40,100 L50,110 L50,150 L60,160 L140,160 L150,150 L150,50 L160,40 L180,40"
+              fill="none"
+              stroke="#3b82f6"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+            <path
+              class="animated-circuit"
+              d="M0,40 L20,40 L30,30 L30,0"
+              fill="none"
+              stroke="#facc15"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+            <path
+              class="animated-circuit"
+              d="M100,200 L100,180 L110,170 L190,170 L200,160"
+              fill="none"
+              stroke="#3b82f6"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+            <path
+              class="animated-circuit delay-1"
+              d="M80,0 L80,20 L70,30 L20,30 L10,40"
+              fill="none"
+              stroke="#facc15"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+            <path
+              class="animated-circuit delay-2"
+              d="M200,80 L180,80 L170,90 L170,120 L160,130 L80,130 L70,120 L70,80 L60,70 L0,70"
+              fill="none"
+              stroke="#3b82f6"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+            <!-- Nodes/Junctions -->
+            <circle cx="20" cy="100" r="3" fill="#facc15"></circle>
+            <circle cx="180" cy="40" r="3" fill="#3b82f6"></circle>
+            <circle cx="20" cy="40" r="2" fill="#3b82f6"></circle>
+            <circle cx="10" cy="40" r="2" fill="#facc15"></circle>
+            <circle cx="200" cy="80" r="2" fill="#facc15"></circle>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#circuit-pattern)"></rect>
+      </svg>
+    </div>
+    <div
+      class="absolute top-0 right-0 -m-32 w-96 h-96 bg-electrion-light rounded-full mix-blend-screen filter blur-[100px] opacity-40 animate-pulse-slow"
+    >
+    </div>
+    <div
+      class="absolute bottom-0 left-0 -m-32 w-96 h-96 bg-electrion-blue rounded-full mix-blend-screen filter blur-[100px] opacity-60"
+    >
+    </div>
+
+    <div class="container relative z-10 mx-auto px-4 text-center">
+      <div
+        class="inline-block px-4 py-1.5 mb-6 border border-white/20 rounded-full bg-white/5 backdrop-blur-md animate-fade-up"
+      >
+        <span
+          class="text-electrion-accent font-semibold tracking-wide text-sm bg-gradient-to-r from-electrion-accent to-yellow-200 bg-clip-text text-transparent"
+        >
+          ⚡ Servicio Técnico 24/7 en Moquegua
+        </span>
+      </div>
+
+      <h1
+        class="text-5xl md:text-7xl font-bold mb-6 animate-fade-up [animation-delay:150ms] leading-tight drop-shadow-lg"
+      >
+        Electricidad <br class="md:hidden" /> y Soluciones <br />
+        <span
+          class="text-transparent bg-clip-text bg-gradient-to-r from-electrion-accent to-electrion-accent pb-2"
+        >
+          Profesionales
+        </span>
+      </h1>
+
+      <p
+        class="text-xl md:text-2xl mb-10 text-slate-300 max-w-2xl mx-auto animate-fade-up [animation-delay:300ms]"
+      >
+        Instalaciones, mantenimiento y automatización industrial. Atención de
+        emergencias y proyectos estructurados con garantía real.
+      </p>
+
+      <div
+        class="flex flex-col sm:flex-row justify-center gap-6 animate-fade-up [animation-delay:450ms]"
+      >
+        <a
+          href="#contacto"
+          class="relative group inline-flex items-center justify-center px-8 py-4 font-bold text-electrion-dark bg-electrion-accent rounded-xl hover:bg-electrion-accent transition-all duration-300 shadow-[0_0_20px_rgba(250,204,21,0.4)] hover:shadow-[0_0_30px_rgba(250,204,21,0.6)] hover:-translate-y-1 overflow-hidden"
+        >
+          <span
+            class="absolute w-0 h-0 transition-all duration-500 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-10"
+          ></span>
+          <span class="relative">Solicitar Cotización Inmediata</span>
+        </a>
+        <a
+          href="#servicios"
+          class="inline-flex items-center justify-center px-8 py-4 font-bold text-white border-2 border-white/20 rounded-xl hover:bg-white hover:text-electrion-dark transition-all duration-300 backdrop-blur-sm bg-white/5 hover:shadow-lg hover:-translate-y-1"
+        >
+          Ver Nuestro Catálogo
+        </a>
+      </div>
+    </div>
+
+    <!-- Divisor SVG (Ola) para transición suave hacia la siguiente sección -->
+    <div
+      class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-10 translate-y-[1px]"
+    >
+      <svg
+        fill="#ffffff"
+        viewBox="0 0 1200 120"
+        preserveAspectRatio="none"
+        class="w-full h-12 md:h-16 lg:h-24 hidden sm:block"
+      >
+        <path
+          d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C-1,95.8,70.52,99.25,116.85,103.85,182.52,110.38,251.5,88.74,321.39,56.44Z"
+        ></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Trust Banner (Nuevo) -->
+  <TrustBanner />
+
+  <!-- Sección Servicios Unificada -->
+  <section id="servicios" class="py-24 bg-gray-50 relative">
+    <div
+      class="container mx-auto px-4 max-w-7xl reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 delay-150"
+    >
+      <h2
+        class="text-3xl md:text-4xl font-bold text-center text-electrion-dark mb-4"
+      >
+        Nuestros Servicios
+      </h2>
+      <p class="text-xl text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+        Soluciones eléctricas completas para todos tus proyectos residenciales,
+        comerciales e industriales.
+      </p>
+
+      <!-- Servicios Destacados (Dinámicos con imágenes) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        {
+          servicios.map((servicio) => (
+            <a
+              href={`/servicios/${servicio.id}`}
+              class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 block group border border-gray-100"
+            >
+              {servicio.data.image && (
+                <div class="h-56 overflow-hidden relative">
+                  <Image
+                    src={servicio.data.image}
+                    alt={servicio.data.title}
+                    class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                  />
+                  <div class="absolute inset-0 bg-electrion-blue opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+                </div>
+              )}
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-electrion-dark mb-2 group-hover:text-electrion-accent transition-colors duration-200 line-clamp-2">
+                  {servicio.data.title}
+                </h3>
+                <p class="text-gray-600 mb-4 line-clamp-3">
+                  {servicio.data.description}
+                </p>
+
+                <div class="flex justify-between items-center mt-auto border-t border-gray-100 pt-4">
+                  <span class="text-electrion-dark font-semibold">
+                    {servicio.data.price || "Cotizar"}
+                  </span>
+                  <span class="bg-electrion-accent text-electrion-dark px-3 py-1 rounded-full text-sm font-bold group-hover:bg-electrion-accent">
+                    Ver detalle
+                  </span>
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+
+      <!-- Otros Servicios Genéricos (Sin imagen) -->
+      <h3
+        class="text-2xl font-bold text-electrion-dark mb-8 border-b-2 border-electrion-accent inline-block pb-2"
+      >
+        Más Especialidades
+      </h3>
+      <div class="grid md:grid-cols-3 gap-8 mb-12">
+        {
+          serviciosGenericos.map((gen) => (
+            <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300 border border-gray-100 flex flex-col">
+              <div class="bg-electrion-blue text-white p-6 pb-4">
+                <i
+                  class={`${gen.icono} text-4xl mb-4 text-electrion-accent drop-shadow-md`}
+                />
+                <h3 class="text-xl font-bold">{gen.titulo}</h3>
+              </div>
+              <div class="p-6 flex-grow bg-white">
+                <p class="text-gray-600 mb-6">{gen.descripcion}</p>
+                <ul class="space-y-3 text-gray-700">
+                  {gen.features.map((f) => (
+                    <li class="flex items-start">
+                      <i class="fas fa-check text-electrion-accent mt-1 mr-3" />
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="text-center mt-12">
+        <a
+          href="#contacto"
+          class="inline-block bg-electrion-blue text-white px-8 py-3 rounded-lg font-bold hover:bg-electrion-blue transition duration-300 text-lg shadow-lg hover:shadow-xl"
+        >
+          Solicitar Cotización de un Servicio
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Componente Portado de Beneficios -->
+  <Beneficios />
+
+  <!-- Componente Portado de Galería -->
+  <div class="bg-electrion-dark border-t border-white/10">
+    <Galeria />
+  </div>
+
+  <!-- Sección Nosotros (Reducida y Optimizada) -->
+  <section
+    id="nosotros"
+    class="py-20 bg-white relative border-t border-gray-100"
+  >
+    <div
+      class="container mx-auto px-4 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 max-w-5xl text-center"
+    >
+      <span
+        class="text-electrion-blue font-semibold tracking-wider uppercase text-sm mb-2 block"
+        >Nuestra Experiencia</span
+      >
+      <h2 class="text-3xl md:text-4xl font-bold text-electrion-dark mb-6">
+        Expertos en Soluciones Eléctricas Integrales
+      </h2>
+      <p class="text-lg text-gray-600 mb-10 max-w-3xl mx-auto">
+        Con años de experiencia en el sector eléctrico de Moquegua y todo el sur
+        del Perú, combinamos conocimiento técnico especializado con los más
+        altos estándares de seguridad urbana e industrial. Tu tranquilidad es
+        nuestro principal compromiso.
+      </p>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-left">
+        <div
+          class="bg-gray-50 p-6 rounded-2xl border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow"
+        >
+          <div
+            class="w-16 h-16 bg-electrion-blue/10 text-electrion-dark rounded-full flex items-center justify-center mb-4"
+          >
+            <i class="fas fa-shield-alt text-electrion-accent text-2xl"></i>
+          </div>
+          <span class="font-bold text-electrion-dark"
+            >Trabajos Garantizados</span
+          >
+        </div>
+        <div
+          class="bg-gray-50 p-6 rounded-2xl border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow"
+        >
+          <div
+            class="w-16 h-16 bg-electrion-blue/10 text-electrion-dark rounded-full flex items-center justify-center mb-4"
+          >
+            <i class="fas fa-bolt text-electrion-accent text-2xl"></i>
+          </div>
+          <span class="font-bold text-electrion-dark">Respuesta Rápida</span>
+        </div>
+        <div
+          class="bg-gray-50 p-6 rounded-2xl border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow"
+        >
+          <div
+            class="w-16 h-16 bg-electrion-blue/10 text-electrion-dark rounded-full flex items-center justify-center mb-4"
+          >
+            <i class="fas fa-cogs text-electrion-accent text-2xl"></i>
+          </div>
+          <span class="font-bold text-electrion-dark"
+            >Técnicos Certificados</span
+          >
+        </div>
+        <div
+          class="bg-gray-50 p-6 rounded-2xl border border-gray-100 flex flex-col items-center text-center hover:shadow-md transition-shadow"
+        >
+          <div
+            class="w-16 h-16 bg-electrion-blue/10 text-electrion-dark rounded-full flex items-center justify-center mb-4"
+          >
+            <i class="fas fa-handshake text-electrion-accent text-2xl"></i>
+          </div>
+          <span class="font-bold text-electrion-dark">Trato Personalizado</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Componente de Testimonios (Nuevo) -->
+  <Testimonios />
+
+  <!-- Componente Portado de Preguntas Frecuentes -->
+  <div class="bg-electrion-dark">
+    <Preguntas />
+  </div>
+
+  <!-- Sección Contacto Premium -->
+  <section
+    id="contacto"
+    class="relative py-24 bg-electrion-dark text-white overflow-hidden"
+  >
+    <!-- Background Elements -->
+    <div
+      class="absolute inset-0 z-0 opacity-10 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:40px_40px]"
+    >
+    </div>
+    <div
+      class="absolute top-1/2 left-0 -translate-y-1/2 -m-32 w-96 h-96 bg-electrion-accent rounded-full mix-blend-screen filter blur-[120px] opacity-20"
+    >
+    </div>
+
+    <div
+      class="container mx-auto px-4 relative z-10 reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700"
+    >
+      <div class="text-center mb-16">
+        <span
+          class="text-electrion-accent font-semibold tracking-wider uppercase text-sm mb-2 block"
+          >¿Un problema urgente?</span
+        >
+        <h2 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow-md">
+          Contáctanos
+        </h2>
+        <p class="text-xl text-slate-300 max-w-2xl mx-auto">
+          Nuestro equipo de ingenieros y técnicos está listo para desarrollar tu
+          próximo proyecto o solucionar tu emergencia.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-5 gap-12 max-w-7xl mx-auto items-start">
+        <!-- Info Col-->
+        <div class="lg:col-span-2 space-y-8">
+          <div
+            class="bg-white/5 backdrop-blur-xl border border-white/10 p-8 rounded-2xl shadow-xl hover:bg-white/10 transition-colors"
+          >
+            <h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
+              <span
+                class="bg-electrion-accent text-electrion-dark w-10 h-10 rounded-lg flex items-center justify-center"
+              >
+                <i class="fas fa-headset"></i>
+              </span>
+              Información
+            </h3>
+
+            <div class="space-y-6">
+              <div class="flex items-start gap-4 group">
+                <div
+                  class="mt-1 w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-electrion-accent group-hover:text-electrion-dark transition-colors"
+                >
+                  <i class="fas fa-map-marker-alt text-lg"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-lg text-slate-200">Ubicación</h4>
+                  <p class="text-slate-400">Moquegua, Perú</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4 group">
+                <div
+                  class="mt-1 w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-electrion-accent group-hover:text-electrion-dark transition-colors"
+                >
+                  <i class="fas fa-phone-alt text-lg"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-lg text-slate-200">
+                    Línea Directa
+                  </h4>
+                  <p class="text-slate-400">+51 951 413 458</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4 group">
+                <div
+                  class="mt-1 w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-electrion-accent group-hover:text-electrion-dark transition-colors"
+                >
+                  <i class="fas fa-envelope text-lg"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-lg text-slate-200">
+                    Email Corporativo
+                  </h4>
+                  <p class="text-slate-400">electriontc@gmail.com</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-white/10">
+              <h4 class="font-bold text-lg mb-2 text-slate-200">
+                Horario de Operaciones
+              </h4>
+              <div
+                class="flex justify-between items-center text-slate-400 mb-2"
+              >
+                <span>Lunes a Sábado:</span>
+                <span class="font-medium text-white">8:00 AM - 6:00 PM</span>
+              </div>
+              <div
+                class="flex justify-between items-center text-electrion-accent font-medium"
+              >
+                <span>Emergencias (SOS):</span>
+                <span class="flex items-center gap-2 animate-pulse"
+                  ><div class="w-2 h-2 rounded-full bg-red-500"></div> 24/7 Disponible</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Col -->
+        <div class="lg:col-span-3">
+          <form
+            id="contactForm"
+            class="bg-white/5 backdrop-blur-xl border border-white/10 p-8 md:p-10 rounded-3xl shadow-2xl relative overflow-hidden"
+          >
+            <!-- Decorative glow inside form -->
+            <div
+              class="absolute -top-20 -right-20 w-40 h-40 bg-electrion-light rounded-full mix-blend-screen filter blur-[60px] opacity-20 pointer-events-none"
+            >
+            </div>
+
+            <h3 class="text-2xl font-bold mb-8 text-white">
+              Solicita Cotización
+            </h3>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+              <div class="space-y-2">
+                <label
+                  for="name"
+                  class="text-sm font-medium text-slate-300 ml-1"
+                  >Nombre Completo *</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  class="w-full px-5 py-3.5 rounded-xl bg-electrion-dark/50 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-electrion-accent focus:ring-1 focus:ring-electrion-accent transition-all duration-300"
+                  placeholder="Ej. Juan Pérez"
+                />
+              </div>
+
+              <div class="space-y-2">
+                <label
+                  for="phone"
+                  class="text-sm font-medium text-slate-300 ml-1"
+                  >Teléfono / WhatsApp *</label
+                >
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  required
+                  class="w-full px-5 py-3.5 rounded-xl bg-electrion-dark/50 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-electrion-accent focus:ring-1 focus:ring-electrion-accent transition-all duration-300"
+                  placeholder="+51 900 000 000"
+                />
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+              <div class="space-y-2">
+                <label
+                  for="email"
+                  class="text-sm font-medium text-slate-300 ml-1"
+                  >Email <span class="text-slate-500 text-xs">(Opcional)</span
+                  ></label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="w-full px-5 py-3.5 rounded-xl bg-electrion-dark/50 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-electrion-accent focus:ring-1 focus:ring-electrion-accent transition-all duration-300"
+                  placeholder="correo@empresa.com"
+                />
+              </div>
+
+              <div class="space-y-2">
+                <label
+                  for="service"
+                  class="text-sm font-medium text-slate-300 ml-1"
+                  >Servicio de Interés</label
+                >
+                <div class="relative">
+                  <select
+                    id="service"
+                    name="service"
+                    class="w-full px-5 py-3.5 rounded-xl bg-electrion-dark/50 border border-white/10 text-white appearance-none focus:outline-none focus:border-electrion-accent focus:ring-1 focus:ring-electrion-accent transition-all duration-300"
+                  >
+                    <option value="" class="bg-slate-800 text-slate-300"
+                      >Seleccione un servicio general</option
+                    >
+                    <option value="residencial" class="bg-slate-800"
+                      >Instalaciones Residenciales</option
+                    >
+                    <option value="industrial" class="bg-slate-800"
+                      >Sistemas Industriales</option
+                    >
+                    <option value="automatizacion" class="bg-slate-800"
+                      >Automatización y Tableros</option
+                    >
+                    <option value="mantenimiento" class="bg-slate-800"
+                      >Mantenimiento Predictivo/Correctivo</option
+                    >
+                    <option value="otros" class="bg-slate-800"
+                      >Otro tipo de trabajo</option
+                    >
+                  </select>
+                  <div
+                    class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-slate-400"
+                  >
+                    <i class="fas fa-chevron-down text-sm"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-2 mb-8">
+              <label
+                for="message"
+                class="text-sm font-medium text-slate-300 ml-1"
+                >Detalles del Proyecto *</label
+              >
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                required
+                class="w-full px-5 py-3.5 rounded-xl bg-electrion-dark/50 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-electrion-accent focus:ring-1 focus:ring-electrion-accent transition-all duration-300 resize-none"
+                placeholder="Describa brevemente qué necesita instalar, reparar o automatizar..."
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full font-bold text-electrion-dark bg-electrion-accent hover:bg-electrion-accent px-6 py-4 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(250,204,21,0.3)] hover:shadow-[0_0_25px_rgba(250,204,21,0.5)] hover:-translate-y-1 flex items-center justify-center gap-2 group"
+            >
+              <span>Enviar Mensaje a Asesoría</span>
+              <i
+                class="fas fa-paper-plane group-hover:translate-x-1 transition-transform"
+              ></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <style>
+    /* Animated SVG Circuit logic */
+    .animated-circuit {
+      stroke-dasharray: 100 200; /* Define the length of the "electricity pulse" vs the empty space */
+      stroke-dashoffset: 300;
+      animation: circuitFlow 4s linear infinite;
+    }
+
+    .animated-circuit.delay-1 {
+      animation-delay: 1.5s;
+    }
+
+    .animated-circuit.delay-2 {
+      animation-delay: 3s;
+    }
+
+    @keyframes circuitFlow {
+      0% {
+        stroke-dashoffset: 300;
+      }
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+  </style>
+</Layout>

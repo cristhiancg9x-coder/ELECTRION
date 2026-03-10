@@ -1,0 +1,73 @@
+---
+/**
+ * @component Preguntas.astro
+ * @description Sección de Preguntas Frecuentes (FAQ) con acordeones interactivos.
+ * Refactorizado a Tailwind CSS para Electrion. Incluye Schema JSON-LD para SEO.
+ */
+
+const preguntas = [
+  {
+    pregunta: "¿Cuánto cuesta el mantenimiento de un Pozo a Tierra?",
+    respuesta:
+      "El precio base incluye la limpieza, reactivación con gel y certificado. El costo exacto depende del estado actual del pozo. ¡Escríbenos para una visita técnica gratuita!",
+  },
+  {
+    pregunta: "¿Atienden emergencias los domingos?",
+    respuesta:
+      "Sí, tenemos un equipo de guardia para emergencias eléctricas las 24 horas, incluyendo domingos y feriados en todo Moquegua.",
+  },
+  {
+    pregunta: "¿Entregan certificado para Defensa Civil (INDECI)?",
+    respuesta:
+      "Sí. Realizamos el protocolo de pruebas completo y entregamos el certificado de operatividad firmado por un Ingeniero Electricista colegiado y habilitado.",
+  },
+  {
+    pregunta: "¿Mis cables están muy viejos, es peligroso?",
+    respuesta:
+      "Si tus cables tienen más de 20 años o son tipo 'mellizo' (blancos planos), representan un alto riesgo de incendio. Recomendamos una inspección para cambiarlos por cables libres de halógenos.",
+  },
+];
+
+const schemaFAQ = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: preguntas.map((item) => ({
+    "@type": "Question",
+    name: item.pregunta,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.respuesta,
+    },
+  })),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schemaFAQ)} />
+
+<section class="py-16 px-4">
+  <div class="max-w-3xl mx-auto">
+    <h2
+      class="text-3xl md:text-4xl font-bold text-center mb-10 text-white drop-shadow-md"
+    >
+      Preguntas Frecuentes
+    </h2>
+
+    <div class="space-y-4">
+      {
+        preguntas.map((item) => (
+          <details class="group bg-white/5 backdrop-blur-md p-5 rounded-xl border border-white/10 cursor-pointer transition-all duration-300 hover:bg-white/10 hover:border-electrion-accent hover:-translate-y-1 open:bg-white/10 open:border-electrion-accent open:shadow-[0_10px_25px_rgba(0,0,0,0.1)]">
+            <summary class="flex justify-between items-center font-bold text-lg text-white list-none [&::-webkit-details-marker]:hidden">
+              {item.pregunta}
+              <span class="text-2xl text-electrion-accent font-bold transition-transform duration-300 group-open:rotate-45">
+                +
+              </span>
+            </summary>
+            <p class="mt-4 pt-4 border-t border-white/10 text-gray-300 leading-relaxed">
+              {item.respuesta}
+            </p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
