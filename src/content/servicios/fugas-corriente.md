@@ -19,4 +19,4 @@ Usamos una **Pinza Amperimétrica de Fugas** y un **Megómetro** para encontrar 
 * Evitar que las paredes pasen corriente.
 * Prevenir incendios.
 
-[**👉 ¡Solicitar Revisión de Fugas!**](/contacto)
+[**👉 ¡Solicitar Revisión de Fugas!**](/?servicio=fugas-corriente#contacto)

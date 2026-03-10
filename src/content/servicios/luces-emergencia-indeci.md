@@ -18,4 +18,4 @@ Las luces de emergencia no son solo un requisito para obtener tu Licencia de Fun
 
 **Evita multas y protege a tus clientes.** Realizamos la instalación y dejamos todo listo para tu próxima inspección.
 
-[**👉 ¡Asegurar mi Negocio Ahora!**](/contacto)
+[**👉 ¡Asegurar mi Negocio Ahora!**](/?servicio=luces-emergencia-indeci#contacto)

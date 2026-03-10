@@ -273,7 +273,7 @@ const serviciosGenericos = [
         {
           servicios.map((servicio) => (
             <a
-              href={`/servicios/${servicio.id}`}
+              href={`/servicios/${servicio.slug}`}
               class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 block group border border-gray-100"
             >
               {servicio.data.image && (
@@ -281,6 +281,9 @@ const serviciosGenericos = [
                   <Image
                     src={servicio.data.image}
                     alt={servicio.data.title}
+                    width={400}
+                    height={300}
+                    format="avif"
                     class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                   />
                   <div class="absolute inset-0 bg-electrion-blue opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
@@ -553,8 +556,21 @@ const serviciosGenericos = [
         <div class="lg:col-span-3">
           <form
             id="contactForm"
+            name="contacto"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            action="/exito"
             class="bg-white/5 backdrop-blur-xl border border-white/10 p-8 md:p-10 rounded-3xl shadow-2xl relative overflow-hidden"
           >
+            <!-- Honeypot anti-spam -->
+            <p class="hidden">
+              <label
+                >No llenes este campo si eres humano: <input
+                  name="bot-field"
+                /></label
+              >
+            </p>
             <!-- Decorative glow inside form -->
             <div
               class="absolute -top-20 -right-20 w-40 h-40 bg-electrion-light rounded-full mix-blend-screen filter blur-[60px] opacity-20 pointer-events-none"
@@ -631,27 +647,61 @@ const serviciosGenericos = [
                     <option value="" class="bg-slate-800 text-slate-300"
                       >Seleccione un servicio general</option
                     >
-                    <option value="residencial" class="bg-slate-800"
-                      >Instalaciones Residenciales</option
+                    <optgroup
+                      label="Especialidades Principales"
+                      class="text-electrion-accent"
                     >
-                    <option value="industrial" class="bg-slate-800"
-                      >Sistemas Industriales</option
+                      {
+                        servicios.map((s) => (
+                          <option
+                            value={s.slug}
+                            class="bg-slate-800 text-white"
+                          >
+                            {s.data.title}
+                          </option>
+                        ))
+                      }
+                    </optgroup>
+                    <optgroup
+                      label="Más Servicios"
+                      class="text-electrion-accent"
                     >
-                    <option value="automatizacion" class="bg-slate-800"
-                      >Automatización y Tableros</option
-                    >
-                    <option value="mantenimiento" class="bg-slate-800"
-                      >Mantenimiento Predictivo/Correctivo</option
-                    >
-                    <option value="otros" class="bg-slate-800"
-                      >Otro tipo de trabajo</option
-                    >
+                      {
+                        serviciosGenericos.map((gen) => (
+                          <option
+                            value={gen.titulo
+                              .toLowerCase()
+                              .replace(/\s+/g, "-")}
+                            class="bg-slate-800 text-white"
+                          >
+                            {gen.titulo}
+                          </option>
+                        ))
+                      }
+                      <option value="otros" class="bg-slate-800 text-white"
+                        >Otro tipo de trabajo</option
+                      >
+                    </optgroup>
                   </select>
                   <div
                     class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-slate-400"
                   >
                     <i class="fas fa-chevron-down text-sm"></i>
                   </div>
+
+                  <!-- Auto-selección por parámetro URL -->
+                  <script is:inline>
+                    document.addEventListener("DOMContentLoaded", () => {
+                      const urlParams = new URLSearchParams(
+                        window.location.search,
+                      );
+                      const serviceParam = urlParams.get("servicio");
+                      if (serviceParam) {
+                        const select = document.getElementById("service");
+                        if (select) select.value = serviceParam;
+                      }
+                    });
+                  </script>
                 </div>
               </div>
             </div>

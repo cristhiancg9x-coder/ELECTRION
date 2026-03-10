@@ -100,7 +100,8 @@ const { title, description } = Astro.props;
                 class="h-12"
                 width="48"
                 height="48"
-                loading="lazy"
+                fetchpriority="high"
+                loading="eager"
               />
               <span class="ml-3 text-xl font-bold text-electrion-dark"
                 >ELECTRION</span
@@ -112,27 +113,27 @@ const { title, description } = Astro.props;
           <div class="hidden md:flex space-x-8">
             <a
               href="/#inicio"
-              class="text-electrion-dark hover:text-electrion-blue font-medium"
+              class={`font-medium transition-colors ${Astro.url.pathname === "/" ? "text-electrion-blue" : "text-electrion-dark hover:text-electrion-blue"}`}
               >Inicio</a
             >
             <a
               href="/#nosotros"
-              class="text-electrion-dark hover:text-electrion-blue font-medium"
+              class="text-electrion-dark hover:text-electrion-blue font-medium transition-colors"
               >Nosotros</a
             >
             <a
-              href="/#servicios"
-              class="text-electrion-dark hover:text-electrion-blue font-medium"
+              href="/servicios/"
+              class={`font-medium transition-colors ${Astro.url.pathname.includes("/servicios") ? "text-electrion-blue" : "text-electrion-dark hover:text-electrion-blue"}`}
               >Servicios</a
             >
             <a
               href="/#portfolio"
-              class="text-electrion-dark hover:text-electrion-blue font-medium"
+              class="text-electrion-dark hover:text-electrion-blue font-medium transition-colors"
               >Portafolio</a
             >
             <a
               href="/#contacto"
-              class="text-electrion-dark hover:text-electrion-blue font-medium"
+              class="text-electrion-dark hover:text-electrion-blue font-medium transition-colors"
               >Contacto</a
             >
           </div>
@@ -164,7 +165,7 @@ const { title, description } = Astro.props;
           <div class="flex flex-col space-y-4 p-5">
             <a
               href="/#inicio"
-              class="text-electrion-dark hover:text-electrion-blue font-medium"
+              class={`font-medium ${Astro.url.pathname === "/" ? "text-electrion-blue bg-blue-50/50 -mx-5 px-5 py-2 border-l-4 border-electrion-blue" : "text-electrion-dark hover:text-electrion-blue"}`}
               >Inicio</a
             >
             <a
@@ -173,8 +174,8 @@ const { title, description } = Astro.props;
               >Nosotros</a
             >
             <a
-              href="/#servicios"
-              class="text-electrion-dark hover:text-electrion-blue font-medium"
+              href="/servicios/"
+              class={`font-medium ${Astro.url.pathname.includes("/servicios") ? "text-electrion-blue bg-blue-50/50 -mx-5 px-5 py-2 border-l-4 border-electrion-blue" : "text-electrion-dark hover:text-electrion-blue"}`}
               >Servicios</a
             >
             <a
@@ -190,7 +191,7 @@ const { title, description } = Astro.props;
             <a
               href="https://wa.me/51951413458"
               target="_blank"
-              class="bg-green-500 text-white px-4 py-3 text-center rounded-lg font-bold shadow-md hover:bg-green-600 transition"
+              class="bg-green-500 text-white px-4 py-3 text-center rounded-lg font-bold shadow-md hover:bg-green-600 transition mt-2"
             >
               <i class="fab fa-whatsapp mr-2"></i>Contactar por WhatsApp
             </a>
@@ -244,8 +245,75 @@ const { title, description } = Astro.props;
       <i class="fab fa-whatsapp text-2xl"></i>
     </a>
 
-    <!-- JavaScript -->
-    <script is:inline src="/js/main.js"></script>
+    <!-- JavaScript de Interacción UI -->
+    <script>
+      // Menú móvil
+      const menuBtn = document.getElementById("menuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener("click", function () {
+          mobileMenu.classList.toggle("hidden");
+          // Cambiar ícono
+          const icon = menuBtn.querySelector("i");
+          if (mobileMenu.classList.contains("hidden")) {
+            if (icon) icon.className = "fas fa-bars";
+          } else {
+            if (icon) icon.className = "fas fa-times";
+          }
+        });
+      }
+
+      // Cerrar menú móvil al hacer clic en un enlace
+      const mobileLinks = document.querySelectorAll("#mobileMenu a");
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", function () {
+          if (mobileMenu) mobileMenu.classList.add("hidden");
+          const icon = menuBtn?.querySelector("i");
+          if (icon) icon.className = "fas fa-bars";
+        });
+      });
+
+      // Cerrar menú móvil al hacer scroll o al tocar fuera (para mejorar UX de header sticky)
+      let lastScrollY = window.scrollY;
+
+      function closeMobileMenu() {
+        if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
+          mobileMenu.classList.add("hidden");
+          const icon = menuBtn?.querySelector("i");
+          if (icon) icon.className = "fas fa-bars";
+        }
+      }
+
+      window.addEventListener(
+        "scroll",
+        function () {
+          // Solo cerrar si hay un scroll significativo (más de 10px) para evitar cierres accidentales al tocar
+          if (Math.abs(window.scrollY - lastScrollY) > 10) {
+            closeMobileMenu();
+            lastScrollY = window.scrollY;
+          }
+        },
+        { passive: true },
+      );
+
+      // En dispositivos táctiles, el scroll puede no dispararse instantáneamente, cerramos cuando intentan arrastrar
+      document.addEventListener(
+        "touchmove",
+        function (e) {
+          // No cerrar si están deslizando DENTRO del menú
+          const target = e.target;
+          if (
+            mobileMenu &&
+            target instanceof Node &&
+            !mobileMenu.contains(target)
+          ) {
+            closeMobileMenu();
+          }
+        },
+        { passive: true },
+      );
+    </script>
 
     <!-- Scroll Reveal Animation Logic -->
     <script is:inline>

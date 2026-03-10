@@ -18,4 +18,4 @@ En el sector industrial, la robustez es la clave. Diseñamos sistemas capaces de
 
 **Seguridad Industrial:** Cumplimos estrictamente con el Código Nacional de Electricidad para garantizar instalaciones de alto nivel técnico.
 
-[**👉 ¡Solicitar Asesoría Técnica!**](/contacto)
+[**👉 ¡Solicitar Asesoría Técnica!**](/?servicio=instalaciones-industriales#contacto)

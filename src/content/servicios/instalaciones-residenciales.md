@@ -18,4 +18,4 @@ image: ../../assets/instalacion-hogar.png
 
 > **¿Tu recibo de luz es muy alto?** Realizamos auditorías para detectar fugas de corriente y optimizar tu consumo mensual.
 
-[**👉 ¡Solicitar Inspección Gratuita!**](/contacto)
+[**👉 ¡Solicitar Inspección Gratuita!**](/?servicio=instalaciones-residenciales#contacto)

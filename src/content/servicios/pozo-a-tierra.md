@@ -18,4 +18,4 @@ El pozo a tierra es el salvavidas de tu negocio. Si la resistencia es alta, los 
 
 **Zonas de atención:** Mariscal Nieto, Samegua, Ilo y todo Moquegua.
 
-[**👉 ¡Agendar Visita Técnica!**](/contacto)
+[**👉 ¡Agendar Visita Técnica!**](/?servicio=pozo-a-tierra#contacto)

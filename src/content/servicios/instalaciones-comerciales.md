@@ -18,4 +18,4 @@ Para una MYPE, una falla eléctrica no es solo un peligro, es dinero perdido. No
 
 **Vende más y duerme tranquilo:** Garantizamos la continuidad de tu energía para que tu negocio nunca se detenga.
 
-[**👉 ¡Cotizar Proyecto Comercial!**](/contacto)
+[**👉 ¡Cotizar Proyecto Comercial!**](/?servicio=instalaciones-comerciales#contacto)

@@ -1,0 +1,35 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Mensaje Enviado | ELECTRION"
+  description="Tu mensaje ha sido enviado exitosamente al equipo de ELECTRION."
+>
+  <section
+    class="bg-electrion-dark text-white min-h-screen flex flex-col justify-center items-center py-20 px-4"
+  >
+    <div
+      class="max-w-md w-full bg-white/5 backdrop-blur-md p-10 rounded-3xl border border-white/10 shadow-2xl text-center"
+    >
+      <div
+        class="w-20 h-20 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6"
+      >
+        <i class="fas fa-check text-4xl"></i>
+      </div>
+      <h1 class="text-3xl font-bold mb-4 text-white">¡Mensaje Recibido!</h1>
+      <p class="text-slate-300 mb-8 leading-relaxed">
+        Gracias por ponerte en contacto con ELECTRION. Hemos recibido tu
+        solicitud de cotización y nuestro equipo de asesores técnicos se
+        comunicará contigo a la brevedad posible.
+      </p>
+
+      <a
+        href="/"
+        class="inline-flex items-center justify-center w-full px-8 py-4 font-bold text-electrion-dark bg-electrion-accent rounded-xl hover:bg-yellow-400 transition-all duration-300 shadow-[0_0_15px_rgba(250,204,21,0.3)] hover:shadow-[0_0_20px_rgba(250,204,21,0.5)] hover:-translate-y-1"
+      >
+        <i class="fas fa-arrow-left mr-2"></i> Volver al Inicio
+      </a>
+    </div>
+  </section>
+</Layout>

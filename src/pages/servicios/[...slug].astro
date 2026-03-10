@@ -6,7 +6,7 @@ import Layout from "../../layouts/Layout.astro";
 export async function getStaticPaths() {
   const serviciosEntries = await getCollection("servicios");
   return serviciosEntries.map((entry) => ({
-    params: { slug: entry.id },
+    params: { slug: entry.slug },
     props: { entry },
   }));
 }
@@ -40,6 +40,9 @@ const { Content } = await entry.render();
                 <Image
                   src={entry.data.image}
                   alt={entry.data.title}
+                  format="avif"
+                  fetchpriority="high"
+                  loading="eager"
                   class={`w-full h-auto object-${entry.data.imageFit || "cover"} aspect-video`}
                 />
               </div>
@@ -83,13 +86,15 @@ const { Content } = await entry.render();
               </a>
 
               <a
-                href="/#contacto"
+                href={`/?servicio=${entry.slug}#contacto`}
                 class="block w-full bg-white hover:bg-gray-100 text-electrion-dark font-bold py-3 px-4 rounded-lg transition duration-300"
               >
                 <i class="fas fa-envelope mr-2"></i> Solicitar Cotización
               </a>
             </div>
-            <div class="bg-electrion-dark p-4 text-sm text-center text-blue-200">
+            <div
+              class="bg-electrion-dark p-4 text-sm text-center text-blue-200"
+            >
               Atención inmediata y trabajos 100% garantizados.
             </div>
           </div>
@@ -98,8 +103,8 @@ const { Content } = await entry.render();
     </div>
   </section>
 
-  <!-- Call to action final -->
-  <section class="bg-electrion-accent py-12">
+  <!-- Call to action final (Desktop) -->
+  <section class="bg-electrion-accent py-12 hidden md:block">
     <div class="container mx-auto px-4 text-center">
       <h2 class="text-2xl md:text-3xl font-bold text-electrion-dark mb-4">
         ¡No arriesgues la seguridad de tu instalación eléctrica!
@@ -109,11 +114,34 @@ const { Content } = await entry.render();
         mercado.
       </p>
       <a
-        href="/servicios"
+        href="/servicios/"
         class="inline-flex items-center text-electrion-dark font-bold hover:underline"
       >
         <i class="fas fa-arrow-left mr-2"></i> Volver a todos los servicios
       </a>
     </div>
   </section>
+
+  <!-- Sticky Mobile CTA Bar (Sólo visible en móviles) -->
+  <div
+    class="md:hidden fixed bottom-0 left-0 w-full z-40 bg-white border-t border-gray-200 shadow-[0_-5px_15px_rgba(0,0,0,0.05)] p-4 flex gap-3"
+  >
+    <a
+      href={`https://wa.me/51951413458?text=Hola%20ELECTRION,%20me%20interesa%20el%20servicio%20de%20${encodeURIComponent(entry.data.title)}`}
+      target="_blank"
+      class="flex-1 bg-green-500 text-white font-bold py-3 px-2 rounded-lg text-center flex items-center justify-center text-sm shadow-md"
+    >
+      <i class="fab fa-whatsapp mr-2 text-lg"></i> Asesoría YA
+    </a>
+    <a
+      href={`/?servicio=${entry.slug}#contacto`}
+      class="w-14 bg-electrion-blue text-white rounded-lg flex items-center justify-center shadow-md"
+      aria-label="Ir a formulario de contacto"
+    >
+      <i class="fas fa-envelope"></i>
+    </a>
+  </div>
+
+  <!-- Padding extra al final para que el footer no sea tapado por el sticky CTA en móvil -->
+  <div class="h-20 md:h-0 w-full bg-electrion-accent"></div>
 </Layout>

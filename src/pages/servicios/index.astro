@@ -1,0 +1,117 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+const servicios = await getCollection("servicios");
+
+// Opcional: Ordenar servicios alfabéticamente
+servicios.sort((a, b) => a.data.title.localeCompare(b.data.title));
+---
+
+<Layout
+  title="Catálogo de Servicios | ELECTRION"
+  description="Explora todos los servicios eléctricos profesionales que ELECTRION ofrece en Moquegua. Instalaciones, automatización, seguridad y más."
+>
+  <!-- Hero Secundario -->
+  <section class="bg-electrion-dark text-white py-20 px-4 relative overflow-hidden">
+    <!-- Animated SVG Circuit Background (Reutilizado para cohesión visual) -->
+    <div class="absolute inset-0 z-0 opacity-10 pointer-events-none">
+      <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="circuit-pattern-small" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+            <path d="M10,50 L20,50 L25,55 L25,75 L30,80 L70,80 L75,75 L75,25 L80,20 L90,20" fill="none" stroke="#2563eb" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path>
+            <circle cx="10" cy="50" r="2" fill="#facc15"></circle>
+            <circle cx="90" cy="20" r="2" fill="#3b82f6"></circle>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#circuit-pattern-small)"></rect>
+      </svg>
+    </div>
+    
+    <div class="container mx-auto max-w-5xl text-center relative z-10">
+      <span class="text-electrion-accent font-semibold tracking-wider uppercase text-sm mb-4 block">
+        Soluciones Integrales
+      </span>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 drop-shadow-lg">
+        Nuestro Catálogo de Servicios
+      </h1>
+      <p class="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto">
+        Desde cableados residenciales simples hasta complejas infraestructuras de automatización industrial. Conoce todo lo que podemos hacer por ti.
+      </p>
+    </div>
+  </section>
+
+  <!-- Grilla de Catálogo -->
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4 max-w-7xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {
+          servicios.map((servicio) => (
+            <a
+              href={`/servicios/${servicio.slug}`}
+              class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 transform md:hover:-translate-y-2 block group border border-gray-100 overflow-hidden flex flex-col h-full"
+            >
+              {servicio.data.image ? (
+                <div class="h-64 overflow-hidden relative">
+                  <Image
+                    src={servicio.data.image}
+                    alt={servicio.data.title}
+                    width={400}
+                    height={300}
+                    format="avif"
+                    class="w-full h-full object-cover group-hover:scale-105 transition duration-700 ease-out"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-electrion-dark/80 via-transparent to-transparent opacity-80" />
+                  
+                  <!-- Tag superpuesto -->
+                  <div class="absolute bottom-4 left-4">
+                    <span class="bg-electrion-accent text-electrion-dark px-3 py-1 text-xs font-bold rounded-full uppercase tracking-wide shadow-sm">
+                      {servicio.data.price || "Cotización Rápida"}
+                    </span>
+                  </div>
+                </div>
+              ) : (
+                <div class="h-64 bg-electrion-blue flex items-center justify-center">
+                  <i class="fas fa-bolt text-6xl text-white/20"></i>
+                </div>
+              )}
+              
+              <div class="p-8 flex flex-col flex-grow">
+                <h3 class="text-2xl font-bold text-electrion-dark mb-4 group-hover:text-electrion-blue transition-colors duration-200">
+                  {servicio.data.title}
+                </h3>
+                <p class="text-gray-600 mb-6 leading-relaxed flex-grow">
+                  {servicio.data.description}
+                </p>
+
+                <div class="mt-auto border-t border-gray-100 pt-6 flex items-center text-electrion-blue font-semibold group-hover:text-electrion-accent transition-colors">
+                  <span>Ver detalles y reservar</span>
+                  <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </div>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Banner Inferior CTA -->
+  <section class="bg-electrion-dark py-16 border-t border-white/10">
+    <div class="container mx-auto px-4 text-center max-w-3xl">
+      <h2 class="text-3xl font-bold text-white mb-6">¿No encuentras lo que buscas?</h2>
+      <p class="text-slate-300 mb-8 text-lg">
+        Elaboramos proyectos eléctricos a la medida y prestamos servicio de diagnóstico para problemas irreconocibles. Conversemos por WhatsApp o llamada directa.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="https://wa.me/51951413458?text=Hola,%20busco%20un%20servicio%20personalizado" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-xl transition duration-300 shadow-lg flex items-center justify-center">
+          <i class="fab fa-whatsapp text-xl mr-2"></i> Asesoría por WhatsApp
+        </a>
+        <a href="/#contacto" class="border-2 border-white/20 hover:bg-white hover:text-electrion-dark text-white font-bold py-4 px-8 rounded-xl transition duration-300 flex items-center justify-center">
+           Formulario de Contacto
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

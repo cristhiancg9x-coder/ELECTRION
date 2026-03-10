@@ -16,4 +16,4 @@ No dejes la seguridad de tu propiedad al azar. Diseñamos e instalamos sistemas 
 * **Sistemas de Energía Solar:** Cámaras autónomas para zonas sin acceso a red eléctrica (fincas, terrenos o perímetros extensos).
 * **Acceso Remoto:** Configuramos todos tus equipos para que puedas ver lo que sucede en tiempo real desde tu smartphone, estés donde estés.
 
-[**👉 ¡Solicitar Cotización de Seguridad!**](/contacto)
+[**👉 ¡Solicitar Cotización de Seguridad!**](/?servicio=camaras-de-seguridad-videovigilancia#contacto)
