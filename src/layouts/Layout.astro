@@ -487,7 +487,7 @@ const { title, description } = Astro.props;
         const observerOptions = {
           root: null,
           rootMargin: "0px",
-          threshold: 0.15,
+          threshold: 0.02, // Reducido al 2% para pantallas móviles y secciones extremadamente largas
         };
 
         const observer = new IntersectionObserver((entries, observer) => {
