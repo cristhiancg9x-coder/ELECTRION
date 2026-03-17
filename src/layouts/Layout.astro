@@ -13,7 +13,7 @@ const { title, description } = Astro.props;
 <html lang="es">
   <head>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QJE1WHSHSN"
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XZ8NDY2DNB"
     ></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
@@ -22,7 +22,13 @@ const { title, description } = Astro.props;
       }
       gtag("js", new Date());
 
-      gtag("config", "G-QJE1WHSHSN");
+      // Configuración de Consentimiento por defecto (Denegado)
+      const consent = localStorage.getItem("electrion_cookie_consent");
+      gtag("consent", "default", {
+        analytics_storage: consent === "accepted" ? "granted" : "denied",
+      });
+
+      gtag("config", "G-XZ8NDY2DNB");
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -472,7 +478,12 @@ const { title, description } = Astro.props;
         if (acceptBtn) {
           acceptBtn.addEventListener("click", () => {
             localStorage.setItem("electrion_cookie_consent", "accepted");
-            // Aquí se inicializarían los scripts de Analytics si existieran
+            // Actualizar el Modo de Consentimiento de Google Analytics
+            if (typeof gtag === "function") {
+              gtag("consent", "update", {
+                analytics_storage: "granted",
+              });
+            }
             hideBanner();
           });
         }
