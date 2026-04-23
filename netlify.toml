@@ -1,0 +1,16 @@
+[build]
+  # Publicamos la raíz ya que ahora es un sitio estático puro
+  publish = "."
+  # No hay comando de construcción necesario para HTML puro
+  command = ""
+
+# Redirecciones opcionales por si intentan entrar a rutas antiguas
+[[redirects]]
+  from = "/servicios/*"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/electricista-en/*"
+  to = "/"
+  status = 301
