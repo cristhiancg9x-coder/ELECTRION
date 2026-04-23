@@ -1,10 +1,9 @@
 [build]
-  # Publicamos la raíz ya que ahora es un sitio estático puro
+  # Publicamos la raíz
   publish = "."
-  # No hay comando de construcción necesario para HTML puro
-  command = ""
+  # Generamos el sitemap automáticamente antes de cada despliegue
+  command = "node scripts/generate-sitemap.mjs"
 
-# Redirecciones opcionales por si intentan entrar a rutas antiguas
 [[redirects]]
   from = "/servicios/*"
   to = "/"
